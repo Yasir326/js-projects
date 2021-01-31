@@ -1,34 +1,6 @@
 import { getFilters } from "./filters";
 import { getTodos, removeTodo, saveTodos, toggleTodo } from "./todos";
 
-const generateTodoDom = (todo) => {
-  const {
-    checkbox,
-    containerEl,
-    todoText,
-    todoEl,
-    removeButton,
-  } = generateElements();
-
-  createCheckbox(checkbox, containerEl, todo);
-  todoText.textContent = todo.text;
-  containerEl.appendChild(todoText);
-  //Setup container
-  createContainer(todoEl, containerEl);
-  //Setup remove button
-  createRemoveButton(removeButton, todoEl, todo);
-  return todoEl;
-};
-
-export const generateSummaryDom = (incomeplteTodos) => {
-  const summary = document.createElement("h2");
-  summary.classList.add("list-title");
-  const plural = incomeplteTodos.length === 1 ? "" : "s";
-  summary.textContent = `You have ${incomeplteTodos.length} task${plural} left to complete`;
-
-  return summary;
-};
-
 export const renderTodos = () => {
   const filteredTodos = filterTodos();
   const incomeplteTodos = filteredTodos.filter((todo) => !todo.completed);
@@ -50,13 +22,40 @@ export const renderTodos = () => {
     : todoEl.appendChild(emptyMessage);
 };
 
+const generateTodoDom = (todo) => {
+  const {
+    checkbox,
+    containerEl,
+    todoText,
+    todoEl,
+    removeButton,
+  } = generateElements();
+
+  createCheckbox(checkbox, containerEl, todo);
+  todoText.textContent = todo.text;
+  containerEl.appendChild(todoText);
+  //Setup container
+  createContainer(todoEl, containerEl);
+  //Setup remove button
+  createRemoveButton(removeButton, todoEl, todo);
+  return todoEl;
+};
+
+const generateSummaryDom = (incomeplteTodos) => {
+  const summary = document.createElement("h2");
+  summary.classList.add("list-title");
+  const plural = incomeplteTodos.length === 1 ? "" : "s";
+  summary.textContent = `You have ${incomeplteTodos.length} task${plural} left to complete`;
+
+  return summary;
+};
+
 const createRemoveButton = (removeButton, todoEl, todo) => {
   removeButton.textContent = "remove";
   removeButton.classList.add("button", "button--text");
   todoEl.appendChild(removeButton);
   removeButton.addEventListener("click", () => {
     removeTodo(todo.id);
-    saveTodos();
     renderTodos();
   });
 };
@@ -74,7 +73,6 @@ const createCheckbox = (checkbox, containerEl, todo) => {
   checkbox.addEventListener("change", () => {
     // todo.completed = !todo.completed;
     toggleTodo(todo.id);
-    saveTodos();
     renderTodos();
   });
 };

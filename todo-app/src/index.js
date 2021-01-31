@@ -1,7 +1,6 @@
 import { setFilters } from "./filters";
-import {  createTodo, saveTodos } from "./todos";
+import { createTodo, saveTodos } from "./todos";
 import { renderTodos } from "./views";
-
 
 renderTodos();
 
