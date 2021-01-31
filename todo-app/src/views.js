@@ -11,7 +11,7 @@ const generateTodoDom = (todo) => {
   } = generateElements();
 
   createCheckbox(checkbox, containerEl, todo);
-  todoText.textContent = todo.todoText;
+  todoText.textContent = todo.text;
   containerEl.appendChild(todoText);
   //Setup container
   createContainer(todoEl, containerEl);
@@ -92,7 +92,7 @@ const filterTodos = () => {
   const todos = getTodos();
   const filters = getFilters();
   return todos.filter((todo) => {
-    const searchTextMatch = todo.todoText
+    const searchTextMatch = todo.text
       .toLowerCase()
       .includes(filters.searchTodo.toLowerCase());
     const hideCompletedMatch = !filters.hideCompleted || !todo.completed;

@@ -17,11 +17,11 @@ export const saveTodos = () => {
 
 export const getTodos = () => todos;
 
-export const createTodo = (todoText) => {
-  if (todoText.length > 0) {
+export const createTodo = (text) => {
+  if (text.length > 0) {
     todos.push({
       id: uuidv4(),
-      todoText,
+      text,
       completed: false,
     });
     saveTodos();
