@@ -1,5 +1,5 @@
 import { getFilters } from "./filters";
-import { getTodos, removeTodo, saveTodos, toggleTodo } from "./todos";
+import { getTodos, removeTodo, toggleTodo } from "./todos";
 
 export const renderTodos = () => {
   const filteredTodos = filterTodos();
@@ -88,12 +88,12 @@ const generateElements = () => {
 
 const filterTodos = () => {
   const todos = getTodos();
-  const filters = getFilters();
+  const {searchTodo, hideCompleted} = getFilters();
   return todos.filter((todo) => {
     const searchTextMatch = todo.text
       .toLowerCase()
-      .includes(filters.searchTodo.toLowerCase());
-    const hideCompletedMatch = !filters.hideCompleted || !todo.completed;
+      .includes(searchTodo.toLowerCase());
+    const hideCompletedMatch = !hideCompleted || !todo.completed;
     return searchTextMatch && hideCompletedMatch;
   });
 };

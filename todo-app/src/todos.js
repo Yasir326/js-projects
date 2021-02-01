@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 let todos = [];
 
-const loadTodos = () => {
+export const loadTodos = () => {
   const todoData = localStorage.getItem("todos");
   try {
     return todoData ? JSON.parse(todoData) : [];

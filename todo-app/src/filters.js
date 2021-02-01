@@ -5,12 +5,12 @@ const filters = {
 
 export const getFilters = () => filters;
 
-export const setFilters = (updates) => {
-  if (typeof updates.searchTodo === "string") {
-    filters.searchTodo = updates.searchTodo;
+export const setFilters = ({ searchTodo, hideCompleted }) => {
+  if (typeof searchTodo === "string") {
+    filters.searchTodo = searchTodo;
   }
 
-  if (typeof updates.hideCompleted === "boolean") {
-    filters.hideCompleted = updates.hideCompleted;
+  if (typeof hideCompleted === "boolean") {
+    filters.hideCompleted = hideCompleted;
   }
 };

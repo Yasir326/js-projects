@@ -1,5 +1,5 @@
 import { setFilters } from "./filters";
-import { createTodo } from "./todos";
+import { createTodo, loadTodos } from "./todos";
 import { renderTodos } from "./views";
 
 renderTodos();
@@ -29,6 +29,7 @@ document.querySelector("#add-todo").addEventListener("submit", (e) => {
 
 window.addEventListener("storage", (e) => {
   if (e.key === "todos") {
+    loadTodos()
     renderTodos();
   }
 });
